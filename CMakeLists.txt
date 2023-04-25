@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.5)
+project(rpc)
+
+set(CMAKE_CXX_COMPILER "clang++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wthread-safety -fsanitize=thread")
+set(CMAKE_BUILD_TYPE DEBUG)
+
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+
+set(NETLIB_INCLUDE_DIRS /home/spanoc/netlib/include)
+set(NETLIB_LIB /home/spanoc/netlib/lib/libnetlib_static.a)
+
+find_package(Protobuf REQUIRED) # cmake提供了环境变量 ${PROTOBUF_LIBRARIES}等
+
+include_directories(${NETLIB_INCLUDE_DIRS} ${Protobuf_INCLUDE_DIRS})
+
+aux_source_directory(${PROJECT_SOURCE_DIR} SRCS)
+add_executable(${PROJECT_NAME} ${SRCS})
+target_link_libraries(${PROJECT_NAME} ${NETLIB_LIB} ${PROTOBUF_LIBRARIES})
