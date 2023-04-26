@@ -5,4 +5,5 @@ package rpc;
 message RpcMessage {
   optional fixed32 id = 1;
   optional string method = 2;
+  repeated string args = 3;
 }
