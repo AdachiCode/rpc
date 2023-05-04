@@ -1,9 +1,16 @@
 syntax = "proto3";
-
 package rpc;
 
+enum MessageType {
+  REQUEST= 0;
+  RESPONSE = 1;
+}
+
 message RpcMessage {
-  optional fixed32 id = 1;
-  optional string method = 2;
-  repeated string args = 3;
+  optional MessageType type = 1;
+  optional fixed64 id = 2;
+  optional string service = 3;
+  optional string method = 4;
+  optional bytes request = 5;
+  optional bytes response = 6;
 }

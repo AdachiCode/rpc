@@ -1,0 +1,16 @@
+syntax = "proto3";
+package rpc;
+option cc_generic_services = true;
+
+message LoginRequest {
+  optional string name = 1;
+  optional string password = 2;
+}
+
+message LoginResponse {
+  optional bool success = 1;
+}
+
+service LoginService {
+  rpc Login(LoginRequest) returns (LoginResponse);
+}
