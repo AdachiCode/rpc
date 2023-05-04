@@ -1,3 +1,0 @@
-/home/spanoc/rpc/build/CMakeFiles/rpc_static.dir
-/home/spanoc/rpc/build/CMakeFiles/edit_cache.dir
-/home/spanoc/rpc/build/CMakeFiles/rebuild_cache.dir
