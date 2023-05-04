@@ -1,3 +1,4 @@
+#include <iostream>
 #include "rpc_service.pb.h"
 #include "base/logger.h"
 #include "net/event_loop.h"
@@ -19,7 +20,8 @@ class LoginServiceImpl : public rpc::LoginService
                        ::google::protobuf::Closure* done)
   {
     LOG_INFO << "LoginServiceImpl::Login";
-    printf("name : %s\npasswd : %s\n", request->name().c_str(), request->password().c_str());
+    // printf("name : %s\npasswd : %s\n", request->name().c_str(), request->password().c_str());
+    std::cout << request->DebugString();
     response->set_success(true);
     done->Run();
   }
@@ -33,6 +35,7 @@ int main()
   InetAddress listenAddr(9981);
   LoginServiceImpl impl;
   RpcServer server(&loop, listenAddr);
+  server.set_thread_num(8);
   server.RegisterService(&impl);
   server.Start();
   loop.Loop();

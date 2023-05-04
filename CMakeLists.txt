@@ -17,5 +17,5 @@ include_directories(${PROJECT_SOURCE_DIR} ${NETLIB_INCLUDE_DIRS} ${Protobuf_INCL
 aux_source_directory(${PROJECT_SOURCE_DIR} SRCS)
 # add_executable(${PROJECT_NAME} ${SRCS})
 # target_link_libraries(${PROJECT_NAME} ${NETLIB_LIB} ${PROTOBUF_LIBRARIES})
-add_executable(server ${SRCS} test/login_server.cc)
-target_link_libraries(server ${NETLIB_LIB} ${PROTOBUF_LIBRARIES})
+add_executable(client ${SRCS} test/login_client.cc)
+target_link_libraries(client ${NETLIB_LIB} ${PROTOBUF_LIBRARIES})

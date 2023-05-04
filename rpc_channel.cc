@@ -2,8 +2,12 @@
 #include "rpc_channel.h"
 using namespace std::placeholders;
 
-RpcChannel::RpcChannel() 
-    : codec_(std::bind(&RpcChannel::OnRpcMessage, this, _1, _2)) {}
+RpcChannel::RpcChannel(bool block)
+    : codec_(std::bind(&RpcChannel::OnRpcMessage, this, _1, _2)),
+      id_(1),
+      block_(block),
+      cond_(block_mutex_),
+      wakeup_id_(0) {}
 
 RpcChannel::~RpcChannel() {
   LOG_INFO << "RpcChannel::destructor";
@@ -23,16 +27,25 @@ void RpcChannel::CallMethod(const ::google::protobuf::MethodDescriptor* method,
   message.set_service(method->service()->full_name()); 
   message.set_method(method->name());
   message.set_request(request->SerializeAsString());
+  int64_t id = 0;
   {
     MutexGuard lock(mutex_);
-    message.set_id(id_);
+    id = id_++;
+    message.set_id(id);
     RpcCallBack call_back;
     call_back.done = done;
     call_back.response = response;
-    call_backs_[id_] = call_back;
-    ++id_;
+    call_backs_[id] = call_back;
   }
   codec_.Send(conn_, message);
+
+  if (block_) {
+    MutexGuard lock(block_mutex_);
+    while (wakeup_id_ != id) {
+      cond_.Wait();
+    }
+    wakeup_id_ = 0;
+  }
 }
 
 void RpcChannel::OnMessage(TcpConnectionPtr conn, Buffer *buf) {
@@ -61,8 +74,14 @@ void RpcChannel::OnRpcMessage(TcpConnectionPtr conn, RpcMessagePtr message) {
     if (!response->ParseFromString(message->response())) {
       LOG_ERROR << "RpcChannel::OnRpcMessgae - invalid response"; 
     }
+    if (done) {
+      done->Run(); // 执行完回调函数后 会销毁该Closure对象
+    }
   } 
-  if (done) {
-    done->Run(); // 执行完回调函数后 会销毁该Closure对象
+
+  if (block_) {
+    MutexGuard lock(block_mutex_);
+    wakeup_id_ = id;
+    cond_.Broadcast();
   }
 }

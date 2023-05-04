@@ -2,6 +2,7 @@
 #define RPC_RPC_SERVER_H
 
 #include <google/protobuf/service.h>
+#include "base/mutex.h"
 #include "net/tcp_server.h"
 #include "rpc_codec.h"
 
@@ -23,7 +24,8 @@ class RpcServer : private NonCopyable {
   void OnCallBackDone(TcpConnectionPtr conn, RpcInfo *info);
   RpcCodec codec_;
   TcpServer server_;
-  std::unordered_map<std::string, google::protobuf::Service *> services_; // 根据service名找到对应的服务 服务器运行过程中只读 不加锁
+  Mutex mutex_;
+  std::unordered_map<std::string, google::protobuf::Service *> services_; // GUARDED_BY(mutex_) 
 };
 
 #endif

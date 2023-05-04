@@ -76,9 +76,9 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_rpc_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\trpc.proto\022\003rpc\"\332\001\n\nRpcMessage\022#\n\004type\030"
   "\001 \001(\0162\020.rpc.MessageTypeH\000\210\001\001\022\017\n\002id\030\002 \001(\006"
-  "H\001\210\001\001\022\024\n\007service\030\003 \001(\tH\002\210\001\001\022\023\n\006method\030\004 "
-  "\001(\tH\003\210\001\001\022\024\n\007request\030\005 \001(\014H\004\210\001\001\022\025\n\010respon"
-  "se\030\006 \001(\014H\005\210\001\001B\007\n\005_typeB\005\n\003_idB\n\n\010_servic"
+  "H\001\210\001\001\022\024\n\007service\030\004 \001(\tH\002\210\001\001\022\023\n\006method\030\005 "
+  "\001(\tH\003\210\001\001\022\024\n\007request\030\006 \001(\014H\004\210\001\001\022\025\n\010respon"
+  "se\030\007 \001(\014H\005\210\001\001B\007\n\005_typeB\005\n\003_idB\n\n\010_servic"
   "eB\t\n\007_methodB\n\n\010_requestB\013\n\t_response*(\n"
   "\013MessageType\022\013\n\007REQUEST\020\000\022\014\n\010RESPONSE\020\001b"
   "\006proto3"
@@ -305,9 +305,9 @@ const char* RpcMessage::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
         } else
           goto handle_unusual;
         continue;
-      // optional string service = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+      // optional string service = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           auto str = _internal_mutable_service();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
@@ -315,9 +315,9 @@ const char* RpcMessage::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
         } else
           goto handle_unusual;
         continue;
-      // optional string method = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+      // optional string method = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           auto str = _internal_mutable_method();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
@@ -325,18 +325,18 @@ const char* RpcMessage::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
         } else
           goto handle_unusual;
         continue;
-      // optional bytes request = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+      // optional bytes request = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
           auto str = _internal_mutable_request();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // optional bytes response = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+      // optional bytes response = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
           auto str = _internal_mutable_response();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
@@ -386,36 +386,36 @@ uint8_t* RpcMessage::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteFixed64ToArray(2, this->_internal_id(), target);
   }
 
-  // optional string service = 3;
+  // optional string service = 4;
   if (_internal_has_service()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_service().data(), static_cast<int>(this->_internal_service().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "rpc.RpcMessage.service");
     target = stream->WriteStringMaybeAliased(
-        3, this->_internal_service(), target);
+        4, this->_internal_service(), target);
   }
 
-  // optional string method = 4;
+  // optional string method = 5;
   if (_internal_has_method()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_method().data(), static_cast<int>(this->_internal_method().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "rpc.RpcMessage.method");
     target = stream->WriteStringMaybeAliased(
-        4, this->_internal_method(), target);
+        5, this->_internal_method(), target);
   }
 
-  // optional bytes request = 5;
+  // optional bytes request = 6;
   if (_internal_has_request()) {
     target = stream->WriteBytesMaybeAliased(
-        5, this->_internal_request(), target);
+        6, this->_internal_request(), target);
   }
 
-  // optional bytes response = 6;
+  // optional bytes response = 7;
   if (_internal_has_response()) {
     target = stream->WriteBytesMaybeAliased(
-        6, this->_internal_response(), target);
+        7, this->_internal_response(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -436,28 +436,28 @@ size_t RpcMessage::ByteSizeLong() const {
 
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x0000003fu) {
-    // optional string service = 3;
+    // optional string service = 4;
     if (cached_has_bits & 0x00000001u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_service());
     }
 
-    // optional string method = 4;
+    // optional string method = 5;
     if (cached_has_bits & 0x00000002u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_method());
     }
 
-    // optional bytes request = 5;
+    // optional bytes request = 6;
     if (cached_has_bits & 0x00000004u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
           this->_internal_request());
     }
 
-    // optional bytes response = 6;
+    // optional bytes response = 7;
     if (cached_has_bits & 0x00000008u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(

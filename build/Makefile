@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named server
+# Target rules for targets named client
 
 # Build rule for target.
-server: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server
-.PHONY : server
+client: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client
+.PHONY : client
 
 # fast build rule for target.
-server/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-.PHONY : server/fast
+client/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+.PHONY : client/fast
 
 protobuf_codec.o: protobuf_codec.cc.o
 .PHONY : protobuf_codec.o
 
 # target to build an object file
 protobuf_codec.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/protobuf_codec.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/protobuf_codec.cc.o
 .PHONY : protobuf_codec.cc.o
 
 protobuf_codec.i: protobuf_codec.cc.i
@@ -142,7 +142,7 @@ protobuf_codec.i: protobuf_codec.cc.i
 
 # target to preprocess a source file
 protobuf_codec.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/protobuf_codec.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/protobuf_codec.cc.i
 .PHONY : protobuf_codec.cc.i
 
 protobuf_codec.s: protobuf_codec.cc.s
@@ -150,7 +150,7 @@ protobuf_codec.s: protobuf_codec.cc.s
 
 # target to generate assembly for a file
 protobuf_codec.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/protobuf_codec.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/protobuf_codec.cc.s
 .PHONY : protobuf_codec.cc.s
 
 rpc.pb.o: rpc.pb.cc.o
@@ -158,7 +158,7 @@ rpc.pb.o: rpc.pb.cc.o
 
 # target to build an object file
 rpc.pb.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc.pb.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc.pb.cc.o
 .PHONY : rpc.pb.cc.o
 
 rpc.pb.i: rpc.pb.cc.i
@@ -166,7 +166,7 @@ rpc.pb.i: rpc.pb.cc.i
 
 # target to preprocess a source file
 rpc.pb.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc.pb.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc.pb.cc.i
 .PHONY : rpc.pb.cc.i
 
 rpc.pb.s: rpc.pb.cc.s
@@ -174,7 +174,7 @@ rpc.pb.s: rpc.pb.cc.s
 
 # target to generate assembly for a file
 rpc.pb.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc.pb.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc.pb.cc.s
 .PHONY : rpc.pb.cc.s
 
 rpc_channel.o: rpc_channel.cc.o
@@ -182,7 +182,7 @@ rpc_channel.o: rpc_channel.cc.o
 
 # target to build an object file
 rpc_channel.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc_channel.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc_channel.cc.o
 .PHONY : rpc_channel.cc.o
 
 rpc_channel.i: rpc_channel.cc.i
@@ -190,7 +190,7 @@ rpc_channel.i: rpc_channel.cc.i
 
 # target to preprocess a source file
 rpc_channel.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc_channel.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc_channel.cc.i
 .PHONY : rpc_channel.cc.i
 
 rpc_channel.s: rpc_channel.cc.s
@@ -198,7 +198,7 @@ rpc_channel.s: rpc_channel.cc.s
 
 # target to generate assembly for a file
 rpc_channel.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc_channel.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc_channel.cc.s
 .PHONY : rpc_channel.cc.s
 
 rpc_server.o: rpc_server.cc.o
@@ -206,7 +206,7 @@ rpc_server.o: rpc_server.cc.o
 
 # target to build an object file
 rpc_server.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc_server.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc_server.cc.o
 .PHONY : rpc_server.cc.o
 
 rpc_server.i: rpc_server.cc.i
@@ -214,7 +214,7 @@ rpc_server.i: rpc_server.cc.i
 
 # target to preprocess a source file
 rpc_server.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc_server.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc_server.cc.i
 .PHONY : rpc_server.cc.i
 
 rpc_server.s: rpc_server.cc.s
@@ -222,7 +222,7 @@ rpc_server.s: rpc_server.cc.s
 
 # target to generate assembly for a file
 rpc_server.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc_server.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc_server.cc.s
 .PHONY : rpc_server.cc.s
 
 rpc_service.pb.o: rpc_service.pb.cc.o
@@ -230,7 +230,7 @@ rpc_service.pb.o: rpc_service.pb.cc.o
 
 # target to build an object file
 rpc_service.pb.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc_service.pb.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc_service.pb.cc.o
 .PHONY : rpc_service.pb.cc.o
 
 rpc_service.pb.i: rpc_service.pb.cc.i
@@ -238,7 +238,7 @@ rpc_service.pb.i: rpc_service.pb.cc.i
 
 # target to preprocess a source file
 rpc_service.pb.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc_service.pb.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc_service.pb.cc.i
 .PHONY : rpc_service.pb.cc.i
 
 rpc_service.pb.s: rpc_service.pb.cc.s
@@ -246,32 +246,32 @@ rpc_service.pb.s: rpc_service.pb.cc.s
 
 # target to generate assembly for a file
 rpc_service.pb.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rpc_service.pb.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rpc_service.pb.cc.s
 .PHONY : rpc_service.pb.cc.s
 
-test/login_server.o: test/login_server.cc.o
-.PHONY : test/login_server.o
+test/login_client.o: test/login_client.cc.o
+.PHONY : test/login_client.o
 
 # target to build an object file
-test/login_server.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/test/login_server.cc.o
-.PHONY : test/login_server.cc.o
+test/login_client.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/test/login_client.cc.o
+.PHONY : test/login_client.cc.o
 
-test/login_server.i: test/login_server.cc.i
-.PHONY : test/login_server.i
+test/login_client.i: test/login_client.cc.i
+.PHONY : test/login_client.i
 
 # target to preprocess a source file
-test/login_server.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/test/login_server.cc.i
-.PHONY : test/login_server.cc.i
+test/login_client.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/test/login_client.cc.i
+.PHONY : test/login_client.cc.i
 
-test/login_server.s: test/login_server.cc.s
-.PHONY : test/login_server.s
+test/login_client.s: test/login_client.cc.s
+.PHONY : test/login_client.s
 
 # target to generate assembly for a file
-test/login_server.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/test/login_server.cc.s
-.PHONY : test/login_server.cc.s
+test/login_client.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/test/login_client.cc.s
+.PHONY : test/login_client.cc.s
 
 # Help Target
 help:
@@ -281,7 +281,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... server"
+	@echo "... client"
 	@echo "... protobuf_codec.o"
 	@echo "... protobuf_codec.i"
 	@echo "... protobuf_codec.s"
@@ -297,9 +297,9 @@ help:
 	@echo "... rpc_service.pb.o"
 	@echo "... rpc_service.pb.i"
 	@echo "... rpc_service.pb.s"
-	@echo "... test/login_server.o"
-	@echo "... test/login_server.i"
-	@echo "... test/login_server.s"
+	@echo "... test/login_client.o"
+	@echo "... test/login_client.i"
+	@echo "... test/login_client.s"
 .PHONY : help
 
 

@@ -203,14 +203,14 @@ class RpcMessage final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kServiceFieldNumber = 3,
-    kMethodFieldNumber = 4,
-    kRequestFieldNumber = 5,
-    kResponseFieldNumber = 6,
+    kServiceFieldNumber = 4,
+    kMethodFieldNumber = 5,
+    kRequestFieldNumber = 6,
+    kResponseFieldNumber = 7,
     kIdFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
-  // optional string service = 3;
+  // optional string service = 4;
   bool has_service() const;
   private:
   bool _internal_has_service() const;
@@ -228,7 +228,7 @@ class RpcMessage final :
   std::string* _internal_mutable_service();
   public:
 
-  // optional string method = 4;
+  // optional string method = 5;
   bool has_method() const;
   private:
   bool _internal_has_method() const;
@@ -246,7 +246,7 @@ class RpcMessage final :
   std::string* _internal_mutable_method();
   public:
 
-  // optional bytes request = 5;
+  // optional bytes request = 6;
   bool has_request() const;
   private:
   bool _internal_has_request() const;
@@ -264,7 +264,7 @@ class RpcMessage final :
   std::string* _internal_mutable_request();
   public:
 
-  // optional bytes response = 6;
+  // optional bytes response = 7;
   bool has_response() const;
   private:
   bool _internal_has_response() const;
@@ -395,7 +395,7 @@ inline void RpcMessage::set_id(uint64_t value) {
   // @@protoc_insertion_point(field_set:rpc.RpcMessage.id)
 }
 
-// optional string service = 3;
+// optional string service = 4;
 inline bool RpcMessage::_internal_has_service() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
@@ -463,7 +463,7 @@ inline void RpcMessage::set_allocated_service(std::string* service) {
   // @@protoc_insertion_point(field_set_allocated:rpc.RpcMessage.service)
 }
 
-// optional string method = 4;
+// optional string method = 5;
 inline bool RpcMessage::_internal_has_method() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
@@ -531,7 +531,7 @@ inline void RpcMessage::set_allocated_method(std::string* method) {
   // @@protoc_insertion_point(field_set_allocated:rpc.RpcMessage.method)
 }
 
-// optional bytes request = 5;
+// optional bytes request = 6;
 inline bool RpcMessage::_internal_has_request() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   return value;
@@ -599,7 +599,7 @@ inline void RpcMessage::set_allocated_request(std::string* request) {
   // @@protoc_insertion_point(field_set_allocated:rpc.RpcMessage.request)
 }
 
-// optional bytes response = 6;
+// optional bytes response = 7;
 inline bool RpcMessage::_internal_has_response() const {
   bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   return value;

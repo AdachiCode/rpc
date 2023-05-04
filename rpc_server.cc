@@ -13,6 +13,8 @@ RpcServer::RpcServer(EventLoop* loop, const InetAddress& addr)
 }
 
 void RpcServer::RegisterService(google::protobuf::Service *service) {
+  MutexGuard lock(mutex_);
+  assert(services_.find(service->GetDescriptor()->full_name()) == services_.end());
   services_[service->GetDescriptor()->full_name()] = service; 
 }
 
@@ -27,10 +29,16 @@ void RpcServer::OnMessage(TcpConnectionPtr conn, Buffer *buf) {
 void RpcServer::OnRpcMessgae(TcpConnectionPtr conn, RpcMessagePtr message) {
   assert(message->type() == rpc::REQUEST);
   assert(message->has_request());
-  const auto& it = services_.find(message->service());
-  if (it != services_.end()) {
-    google::protobuf::Service *service = it->second;
-    assert(service);
+  google::protobuf::Service *service = nullptr;  
+  {
+    MutexGuard lock(mutex_);
+    const auto& it = services_.find(message->service());
+    if (it != services_.end()) {
+      service = it->second;
+      assert(service);
+    }
+  }
+  if (service) {
     const google::protobuf::ServiceDescriptor *desc = service->GetDescriptor();
     assert(desc);
     const google::protobuf::MethodDescriptor * method = desc->FindMethodByName(message->method());
